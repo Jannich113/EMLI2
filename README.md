@@ -7,5 +7,6 @@ The Node-Red script:
 The Score-board script:
 - file name: score_board.py
 
-The Arduino Mega ESP board script:
-- file name: 
+The Arduino Mega ESP ino script:
+- file name: MRP_Beer_pong.txt
+ - needs to be copied into an ino file.
