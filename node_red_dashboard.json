@@ -1,0 +1,742 @@
+[
+    {
+        "id": "62882bddce4d4d93",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e73b369241450ef5",
+        "type": "group",
+        "z": "62882bddce4d4d93",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "339cdabb00c6313d",
+            "66f00c029c22cfd6",
+            "0d0434e082c7fb04",
+            "568193104e13e2a0",
+            "356362cad5019556",
+            "a56fe9b12a70b392"
+        ],
+        "x": 174,
+        "y": 499,
+        "w": 712,
+        "h": 162
+    },
+    {
+        "id": "68e844177c2ac55c",
+        "type": "group",
+        "z": "62882bddce4d4d93",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "18c2e29e8a0da83f",
+            "c2523422a747c26c",
+            "04a4aa30d74856d5",
+            "7f0790a19c7b9be0",
+            "67af165088607c5c",
+            "c8f2192a6db4ca86"
+        ],
+        "x": 174,
+        "y": 839,
+        "w": 712,
+        "h": 162
+    },
+    {
+        "id": "ae3211139bfd89a6",
+        "type": "group",
+        "z": "62882bddce4d4d93",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "2e172c8f.09cd8",
+            "04cb1cd5491a7e61",
+            "959691e83af0c310"
+        ],
+        "x": 1274,
+        "y": 859,
+        "w": 372,
+        "h": 142
+    },
+    {
+        "id": "2e172c8f.09cd8",
+        "type": "ui_button",
+        "z": "62882bddce4d4d93",
+        "g": "ae3211139bfd89a6",
+        "name": "",
+        "group": "ebd047f238f7884c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "reset",
+        "payloadType": "str",
+        "topic": "resetTotalCount",
+        "topicType": "str",
+        "x": 1370,
+        "y": 960,
+        "wires": [
+            [
+                "e0bdb99a829d7d48",
+                "124f8610d4eef30a",
+                "959691e83af0c310"
+            ]
+        ]
+    },
+    {
+        "id": "18c2e29e8a0da83f",
+        "type": "ui_text_input",
+        "z": "62882bddce4d4d93",
+        "g": "68e844177c2ac55c",
+        "name": "",
+        "label": "Level difficulty [0-3]",
+        "tooltip": "",
+        "group": "afc82159630e3c58",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "500",
+        "topic": "user/input",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 290,
+        "y": 960,
+        "wires": [
+            [
+                "7f0790a19c7b9be0"
+            ]
+        ]
+    },
+    {
+        "id": "c2523422a747c26c",
+        "type": "mqtt out",
+        "z": "62882bddce4d4d93",
+        "g": "68e844177c2ac55c",
+        "name": "Motor command",
+        "topic": "motorcommand",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "651f757130078bfd",
+        "x": 800,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "04a4aa30d74856d5",
+        "type": "ui_button",
+        "z": "62882bddce4d4d93",
+        "g": "68e844177c2ac55c",
+        "name": "",
+        "group": "afc82159630e3c58",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Team 2 turn",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "button_click_2",
+        "topicType": "str",
+        "x": 450,
+        "y": 880,
+        "wires": [
+            [
+                "7f0790a19c7b9be0",
+                "0161dd9ff374c916",
+                "c8f2192a6db4ca86"
+            ]
+        ]
+    },
+    {
+        "id": "7f0790a19c7b9be0",
+        "type": "function",
+        "z": "62882bddce4d4d93",
+        "g": "68e844177c2ac55c",
+        "name": "Send level difficulty on click",
+        "func": "// Initialize inputValue\nlet inputValue = \"\";\n\n// Check if the message is from the text input node\nif (msg.topic === \"user/input\") {\n    // Store the input value in a flow context variable\n    flow.set('inputValue', msg.payload);\n}\n\n// Check if the message is from the button click\nif (msg.topic === \"button_click_2\") {\n    // Retrieve the input value from the flow context variable\n    inputValue = flow.get('inputValue');\n\n    // Create a new message with the inputValue\n    msg = {\n        payload: inputValue,\n        topic: \"button_clicked_value\"\n    };\n\n    return msg;\n}\n\nreturn null; // To filter out other messages\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 960,
+        "wires": [
+            [
+                "c2523422a747c26c"
+            ]
+        ]
+    },
+    {
+        "id": "339cdabb00c6313d",
+        "type": "ui_text_input",
+        "z": "62882bddce4d4d93",
+        "g": "e73b369241450ef5",
+        "name": "",
+        "label": "Level difficulty [0-3]",
+        "tooltip": "",
+        "group": "a06bc8f8.a0fb3",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "500",
+        "topic": "user/input",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 290,
+        "y": 540,
+        "wires": [
+            [
+                "568193104e13e2a0",
+                "44c9d460a93811a4"
+            ]
+        ]
+    },
+    {
+        "id": "66f00c029c22cfd6",
+        "type": "mqtt out",
+        "z": "62882bddce4d4d93",
+        "g": "e73b369241450ef5",
+        "name": "Motor command",
+        "topic": "motorcommand",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "651f757130078bfd",
+        "x": 800,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "0d0434e082c7fb04",
+        "type": "ui_button",
+        "z": "62882bddce4d4d93",
+        "g": "e73b369241450ef5",
+        "name": "",
+        "group": "a06bc8f8.a0fb3",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Team 1 turn",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "button_click_1",
+        "topicType": "str",
+        "x": 510,
+        "y": 620,
+        "wires": [
+            [
+                "568193104e13e2a0",
+                "0161dd9ff374c916",
+                "a56fe9b12a70b392"
+            ]
+        ]
+    },
+    {
+        "id": "568193104e13e2a0",
+        "type": "function",
+        "z": "62882bddce4d4d93",
+        "g": "e73b369241450ef5",
+        "name": "Send level difficulty on click",
+        "func": "// Initialize inputValue\nlet inputValue = \"\";\n\n// Check if the message is from the text input node\nif (msg.topic === \"user/input\") {\n    // Store the input value in a flow context variable\n    flow.set('inputValue', msg.payload);\n}\n\n// Check if the message is from the button click\nif (msg.topic === \"button_click_1\") {\n    // Retrieve the input value from the flow context variable\n    inputValue = flow.get('inputValue');\n\n    // Create a new message with the inputValue\n    msg = {\n        payload: inputValue,\n        topic: \"button_clicked_value\"\n    };\n\n    return msg;\n}\n\nreturn null; // To filter out other messages\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 540,
+        "wires": [
+            [
+                "66f00c029c22cfd6",
+                "41c59f3bbe22c315"
+            ]
+        ]
+    },
+    {
+        "id": "356362cad5019556",
+        "type": "comment",
+        "z": "62882bddce4d4d93",
+        "g": "e73b369241450ef5",
+        "name": "Team 1",
+        "info": "",
+        "x": 250,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "67af165088607c5c",
+        "type": "comment",
+        "z": "62882bddce4d4d93",
+        "g": "68e844177c2ac55c",
+        "name": "Team 2",
+        "info": "",
+        "x": 250,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "0646fd3c6cbaf17d",
+        "type": "mqtt in",
+        "z": "62882bddce4d4d93",
+        "name": "Recieve ball in cups",
+        "topic": "pi/ballincups",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "651f757130078bfd",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 290,
+        "y": 780,
+        "wires": [
+            [
+                "e2e5abe39ebc5535",
+                "9d476a2a770ec1ee"
+            ]
+        ]
+    },
+    {
+        "id": "58e0f82d41775e25",
+        "type": "debug",
+        "z": "62882bddce4d4d93",
+        "name": "debug json",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "9d476a2a770ec1ee",
+        "type": "debug",
+        "z": "62882bddce4d4d93",
+        "name": "debug mqtt",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "e2e5abe39ebc5535",
+        "type": "json",
+        "z": "62882bddce4d4d93",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 510,
+        "y": 780,
+        "wires": [
+            [
+                "58e0f82d41775e25",
+                "0161dd9ff374c916"
+            ]
+        ]
+    },
+    {
+        "id": "0161dd9ff374c916",
+        "type": "function",
+        "z": "62882bddce4d4d93",
+        "name": "Team change",
+        "func": "// Initialize direction variable\nlet currentDirection = \"team1\";  // Set to your default direction\n\n// Check if the message is from the button to change direction\nif (msg.topic === \"button_click_1\") {\n    flow.set('currentDirection', \"team1\");\n\n    // Additional logic or actions related to changing to direction 1 can be added here\n}\n\nif (msg.topic === \"button_click_2\") {\n    flow.set('currentDirection', \"team2\");\n    // Additional logic or actions related to changing to direction 2 can be added here\n}\n\n// Check if the message is from MQTT\nif (msg.topic === \"pi/ballincups\" && msg.payload !== undefined) {\n    // Process the MQTT message based on the current direction\n    currentDirection = flow.get('currentDirection');\n    \n    if (currentDirection === \"team1\") {\n        // Process the message for direction 1\n        // ...\n        msg = {\n        payload: msg.payload,\n        topic: \"score1\"\n        } \n\n    return msg;\n\n        // Optionally, you can modify the message or create a new one\n        // msg.payload = modifiedPayload;\n    } else if (currentDirection === \"team2\") {\n        msg = {\n        payload: msg.payload,\n        topic: \"score2\"\n        }\n\n    return msg;\n    }\n}\n\nreturn null;  // Filter out other messages\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 780,
+        "wires": [
+            [
+                "266e70844bb25ee5",
+                "744fa9466bc7f055"
+            ]
+        ]
+    },
+    {
+        "id": "266e70844bb25ee5",
+        "type": "switch",
+        "z": "62882bddce4d4d93",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "score1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "score2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1150,
+        "y": 780,
+        "wires": [
+            [
+                "e0bdb99a829d7d48"
+            ],
+            [
+                "124f8610d4eef30a"
+            ]
+        ]
+    },
+    {
+        "id": "e0bdb99a829d7d48",
+        "type": "mqtt out",
+        "z": "62882bddce4d4d93",
+        "name": "Team 1",
+        "topic": "team/1/score",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "651f757130078bfd",
+        "x": 1420,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "124f8610d4eef30a",
+        "type": "mqtt out",
+        "z": "62882bddce4d4d93",
+        "name": "Team 2",
+        "topic": "team/2/score",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "651f757130078bfd",
+        "x": 1420,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "850242e35e49da78",
+        "type": "function",
+        "z": "62882bddce4d4d93",
+        "name": "score converter",
+        "func": "// Assuming the value you want to check is in msg.payload\nlet valueToCheck = msg.payload;\n\n// Switch case based on the value\nswitch (valueToCheck) {\n    case 1:\n        return {\n            payload: 1,\n            topic: \"result\"\n        };\n    \n    case 3:\n        // \n        return {\n            payload: 2,\n            topic: \"result\"\n        };\n\n    case 7:\n        // \n        return {\n            payload: 3,\n            topic: \"result\"\n        };\n    \n    case 15:\n        // \n        return {\n            payload: 4,\n            topic: \"result\"\n        };\n\n    case 31:\n        // \n        return {\n            payload: 5,\n            topic: \"result\"\n        };\n\n    case 63:\n        // \n        return {\n            payload: 6,\n            topic: \"result\"\n        };\n\n    default:\n        // If the value doesn't match any case, handle it here\n        return {\n            payload: 0,\n            topic: \"result\"\n        };\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1160,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6ee7caaf25e41d2d",
+        "type": "function",
+        "z": "62882bddce4d4d93",
+        "name": "decToBinary",
+        "func": "// Assuming the decimal value is in msg.payload\nlet decimalValue = msg.payload;\n\n// Convert decimal to binary\nlet binaryValue = decimalValue.toString(2);\n\n// Count the number of '1's in the binary representation\nlet countOnes = (binaryValue.match(/1/g) || []).length;\n\n// Retrieve the current total count from the flow variable (initialize to 0 if not set)\nlet totalOnesCount1 = flow.get('totalOnesCount1') || 0;\n\n// Update the total count\ntotalOnesCount1 += countOnes;\n\n// Update the flow variable with the new total count\nflow.set('totalOnesCount1', totalOnesCount1);\n\n// Create a new message with the binary value, count of '1's, and any other information\nlet newMsg = {\n    payload: totalOnesCount1,\n    topic: \"result\"\n};\n\nreturn newMsg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "744fa9466bc7f055",
+        "type": "debug",
+        "z": "62882bddce4d4d93",
+        "name": "debug team change",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "d991a3dbfd418daa",
+        "type": "function",
+        "z": "62882bddce4d4d93",
+        "name": "decToBinary",
+        "func": "// Assuming the decimal value is in msg.payload\nlet decimalValue = msg.payload;\n\n// Convert decimal to binary\nlet binaryValue = decimalValue.toString(2);\n\n// Count the number of '1's in the binary representation\nlet countOnes = (binaryValue.match(/1/g) || []).length;\n\n// Retrieve the current total count from the flow variable (initialize to 0 if not set)\nlet totalOnesCount2 = flow.get('totalOnesCount2') || 0;\n\n// Update the total count\ntotalOnesCount2 += countOnes;\n\n// Update the flow variable with the new total count\nflow.set('totalOnesCount2', totalOnesCount2);\n\n// Create a new message with the binary value, count of '1's, and any other information\nlet newMsg = {\n    payload: totalOnesCount2,\n    topic: \"result\"\n};\n\nreturn newMsg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1090,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "959691e83af0c310",
+        "type": "function",
+        "z": "62882bddce4d4d93",
+        "g": "ae3211139bfd89a6",
+        "name": "reset score",
+        "func": "if (msg.topic === \"resetTotalCount\") {\n    // Reset the total count to zero\n     flow.set('totalOnesCount0', 0);\n    flow.set('totalOnesCount1', 0);\n    flow.set('totalOnesCount2', 0);\n    flow.set('uniqueBinaryValues2', 0);\n    flow.set('uniqueBinaryValues1', 0);\n    flow.set('uniqueBinaryValues', 0);\n    flow.set('uniqueBitPositions', 0);\n    flow.set('uniqueBits2', 0);\n    flow.set('totalBitsCount2', 0);\n    // Optionally, you can send a confirmation message\n    return {\n        payload: \"Total count reset to zero\",\n        topic: \"reset_result\"\n    };\n}\n\n// If it's not a reset button click, pass the message through\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1570,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "04cb1cd5491a7e61",
+        "type": "comment",
+        "z": "62882bddce4d4d93",
+        "g": "ae3211139bfd89a6",
+        "name": "Game setup",
+        "info": "",
+        "x": 1350,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "44c9d460a93811a4",
+        "type": "debug",
+        "z": "62882bddce4d4d93",
+        "name": "debug level",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "a56fe9b12a70b392",
+        "type": "debug",
+        "z": "62882bddce4d4d93",
+        "g": "e73b369241450ef5",
+        "name": "debug click 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "41c59f3bbe22c315",
+        "type": "debug",
+        "z": "62882bddce4d4d93",
+        "name": "debug m mcd",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "c8f2192a6db4ca86",
+        "type": "debug",
+        "z": "62882bddce4d4d93",
+        "g": "68e844177c2ac55c",
+        "name": "debug click 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "ebd047f238f7884c",
+        "type": "ui_group",
+        "name": "Game setup",
+        "tab": "4e0b235d.5bc56c",
+        "order": 3,
+        "disp": true,
+        "width": "3",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "afc82159630e3c58",
+        "type": "ui_group",
+        "name": "Team 2 ActionBoard",
+        "tab": "4e0b235d.5bc56c",
+        "order": 2,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "651f757130078bfd",
+        "type": "mqtt-broker",
+        "name": "uuuuu",
+        "broker": "192.168.24.1",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "a06bc8f8.a0fb3",
+        "type": "ui_group",
+        "name": "Team 1 ActionBoard",
+        "tab": "4e0b235d.5bc56c",
+        "order": 1,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4e0b235d.5bc56c",
+        "type": "ui_tab",
+        "name": "Scoreboard",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
