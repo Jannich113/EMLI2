@@ -1,4 +1,4 @@
-
+Overview of the three scripts used in this project.
 
 The Node-Red script:
 - file name: node_red_dashboard.json
@@ -9,4 +9,4 @@ The Score-board script:
 
 The Arduino Mega ESP ino script:
 - file name: MRP_Beer_pong.txt
- - needs to be copied into an ino file.
+  - needs to be copied into an ino file.
