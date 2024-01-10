@@ -6,7 +6,7 @@ The Node-Red script:
  
 The Score-board script:
 - file name: score_board.py
-    - needs the library [https://github.com/hzeller/rpi-rgb-led-matrix?tab](https://github.com/hzeller/rpi-rgb-led-matrix) to be run on a Raspberry Pi
+    - needs the library [hzeller/rpi-rgb-led-matrix](https://github.com/hzeller/rpi-rgb-led-matrix) to be run on a Raspberry Pi
 
 The Arduino Mega ESP ino script:
 - file name: MRP_Beer_pong.ino
