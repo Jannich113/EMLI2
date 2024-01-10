@@ -9,4 +9,4 @@ The Score-board script:
     - needs the library [hzeller/rpi-rgb-led-matrix](https://github.com/hzeller/rpi-rgb-led-matrix) to be run on a Raspberry Pi
 
 The Arduino Mega ESP ino script:
-- file name: MRP_Beer_pong.ino
+- file name: mrp_beerpong.ino
